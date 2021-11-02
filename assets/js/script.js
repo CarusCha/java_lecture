@@ -1,5 +1,5 @@
 // import json file
-import json from "data/java_lecture.json" assert { type: "json" };
+import json from "../../data/java_lecture.json" assert { type: "json" };
 
 var html = `<div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical" style="width:200px;">`;
 
