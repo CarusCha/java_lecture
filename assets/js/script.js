@@ -1,26 +1,26 @@
 // import json file
 import json from "../../data/java_lecture.json" assert { type: "json" };
 
-var html = `<div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical" style="width:200px;">`;
+var htmlText = `<div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical" style="width:200px;">`;
 
 // add left nav
 for (const [i, chapter] of json.entries()) {
     let isActive = i == 0;
-    html += `<button class="nav-link${isActive ? " active" : ""}" id="nav-${i}-tab" data-bs-toggle="tab" data-bs-target="#nav-${i}" type="button" role="tab" aria-controls="nav-${i}" aria-selected="${isActive ? "true" : "false"}">
+    htmlText += `<button class="nav-link${isActive ? " active" : ""}" id="nav-${i}-tab" data-bs-toggle="tab" data-bs-target="#nav-${i}" type="button" role="tab" aria-controls="nav-${i}" aria-selected="${isActive ? "true" : "false"}">
     ${chapter["name"]}
     </button>`;
 }
-html += "</div>";
+htmlText += "</div>";
 // close left nav
 
 // add contents
-html += `<div class="tab-content w-100" id="v-pills-tabContent">`;
+htmlText += `<div class="tab-content w-100" id="v-pills-tabContent">`;
 for (const [sec_num, chapter] of json.entries()) {
     let isActive = sec_num == 0;
-    html += `<div class="tab-pane fade${isActive ? " active show" : ""}" id="nav-${sec_num}" role="tabpanel" aria-labelledby="nav-${sec_num}-tab">`;
+    htmlText += `<div class="tab-pane fade${isActive ? " active show" : ""}" id="nav-${sec_num}" role="tabpanel" aria-labelledby="nav-${sec_num}-tab">`;
 
     for (const [lec_num, lecture] of chapter["lecture"].entries()) {
-        html += `
+        htmlText += `
         <div class="accordion accordion-flush" id="accordionFlushExample">
             <div class="accordion-item">
                 <h2 class="accordion-header" id="flush-heading${lec_num}">
@@ -38,9 +38,9 @@ for (const [sec_num, chapter] of json.entries()) {
         `;
     }
     // close tab
-    html += "</div>";
+    htmlText += "</div>";
 }
-html += "</div>";
+htmlText += "</div>";
 // close contents
 
-document.querySelector("#left_nav").innerHTML = html;
+document.querySelector("#left_nav").innerHTML = htmlText;
