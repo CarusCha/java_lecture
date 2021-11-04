@@ -1,7 +1,7 @@
 // import json file
 import json from "../../data/java_lecture.json" assert { type: "json" };
 
-var htmlText = `<div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical" style="width:200px;">`;
+var htmlText = `<div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical" style="width:120px;">`;
 
 // add left nav
 for (const [i, chapter] of json.entries()) {
@@ -14,7 +14,7 @@ htmlText += "</div>";
 // close left nav
 
 // add contents
-htmlText += `<div class="tab-content w-100" id="v-pills-tabContent">`;
+htmlText += `<div class="tab-content contentView" id="v-pills-tabContent">`;
 for (const [sec_num, chapter] of json.entries()) {
     let isActive = sec_num == 0;
     htmlText += `<div class="tab-pane fade${isActive ? " active show" : ""}" id="nav-${sec_num}" role="tabpanel" aria-labelledby="nav-${sec_num}-tab">`;

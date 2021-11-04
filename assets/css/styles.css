@@ -12,3 +12,17 @@ iframe {
     width: 90%;
     height: 90%;
 }
+
+.scrollmenu {
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+}
+
+.contentView {
+    position: fixed;
+    left: 140px;
+    padding-right: 150px;
+    width: 100%;
+    overflow-wrap: break-word;
+}
