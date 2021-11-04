@@ -23,14 +23,14 @@ for (const [sec_num, chapter] of json.entries()) {
         htmlText += `
         <div class="accordion accordion-flush" id="accordionFlushExample">
             <div class="accordion-item">
-                <h2 class="accordion-header" id="flush-heading${lec_num}">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse${lec_num}" aria-expanded="false" aria-controls="flush-collapse${lec_num}">
+                <h2 class="accordion-header" id="flush-heading${sec_num}_${lec_num}">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse${sec_num}_${lec_num}" aria-expanded="false" aria-controls="flush-collapse${sec_num}_${lec_num}">
                         ${lecture["text"]}
                     </button>
                 </h2>
-                <div id="flush-collapse${lec_num}" class="accordion-collapse collapse" aria-labelledby="flush-heading${lec_num}" data-bs-parent="#accordionFlushExample">
+                <div id="flush-collapse${sec_num}_${lec_num}" class="accordion-collapse collapse" aria-labelledby="flush-heading${sec_num}_${lec_num}" data-bs-parent="#accordionFlushExample">
                     <div class="accordion-body iframe_container">
-                        <iframe src="${lecture["url"]}" allowfullscreen title="${lecture["text"]}"></iframe>
+                        <iframe src="${lecture["url"]}" allowfullscreen title="${lecture["text"]} (${lecture["time"]})"></iframe>
                     </div>
                 </div>
             </div>
