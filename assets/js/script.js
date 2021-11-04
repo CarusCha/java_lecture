@@ -14,7 +14,7 @@ htmlText += "</div>";
 // close left nav
 
 // add contents
-htmlText += `<div class="tab-content w-90" id="v-pills-tabContent">`;
+htmlText += `<div class="tab-content w-100" id="v-pills-tabContent">`;
 for (const [sec_num, chapter] of json.entries()) {
     let isActive = sec_num == 0;
     htmlText += `<div class="tab-pane fade${isActive ? " active show" : ""}" id="nav-${sec_num}" role="tabpanel" aria-labelledby="nav-${sec_num}-tab">`;
