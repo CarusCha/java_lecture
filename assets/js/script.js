@@ -20,14 +20,15 @@ for (const [sec_num, chapter] of json.entries()) {
     var totalChapterSec = 0;
     let isActive = sec_num == 0;
     htmlText += `<div class="tab-pane fade${isActive ? " active show" : ""}" id="nav-${sec_num}" role="tabpanel" aria-labelledby="nav-${sec_num}-tab">`;
-    htmlText += `<div class="accordion accordion-flush" id="accordionFlushExample${sec_num}">`
+    htmlText += `<div class="accordion accordion-flush" id="accordionFlushExample${sec_num}">`;
+    var contentHTML = "";
     for (const [lec_num, lecture] of chapter["lecture"].entries()) {
         let time = lecture["time"];
         let times = time.split(':');
         totalChapterSec += parseInt(times[0] * 60);
         totalChapterSec += parseInt(times[1]);
-
-        htmlText += `
+        
+        contentHTML += `
             <div class="accordion-item">
                 <h2 class="accordion-header" id="flush-heading${sec_num}_${lec_num}">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse${sec_num}_${lec_num}" aria-expanded="false" aria-controls="flush-collapse${sec_num}_${lec_num}">
@@ -42,13 +43,32 @@ for (const [sec_num, chapter] of json.entries()) {
             </div>
         `;
     }
+
+    // adding time
+    let h = parseInt(totalChapterSec / 3600);
+    let m = parseInt((totalChapterSec % 3600) / 60);
+    let s = parseInt((totalChapterSec % 3600) % 60);
+    let timeText = (h > 0 ? `${h}시간 ` : "") + (m > 0 ? `${m}분 ` : "") + (s > 0 ? `${s}초` : "")
+    htmlText += `<div id="totalChapterSec" class="container"><div class="center">${timeText}</div></div>`;
+    htmlText += contentHTML;
     // close tab
     htmlText += "</div>";
     htmlText += "</div>";
+
+    totalSec += totalChapterSec;
 }
-// htmlText += `<p>${totalChapterSec}</p>`;
+
+
 
 htmlText += "</div>";
 // close contents
+
+// adding total time
+let h = parseInt(totalSec / 3600);
+let m = parseInt((totalSec % 3600) / 60);
+let s = parseInt((totalSec % 3600) % 60);
+let timeText = (h > 0 ? `${h}시간 ` : "") + (m > 0 ? `${m}분 ` : "") + (s > 0 ? `${s}초` : "")
+document.querySelector("#top_bar").innerHTML += ` (총 ${timeText})`;
+
 
 document.querySelector("#left_nav").innerHTML = htmlText;
